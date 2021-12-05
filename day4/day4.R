@@ -21,9 +21,7 @@ checkbingo <- function(board, numlist){
     tests <- board==numlist[round] | tests
     if (any(rowSums(tests)==5)) return(round)
     if (any(colSums(tests)==5)) return(round)
-    if (round==100) return(101)
-    round <- round+1
-  } }
+    round <- round+1   } }
 
 solution <- which.min(map_dbl(boards, ~checkbingo(., numbers)))
 
@@ -34,12 +32,9 @@ checkscore <- function(board, numlist){
     tests <- board==numlist[round] | tests
     if (any(rowSums(tests)==5)) return(sum((!tests)*board*numlist[[round]]))
     if (any(colSums(tests)==5)) return(sum((!tests)*board*numlist[[round]]))
-    if (round==100) return(101)
-    round <- round+1
-  } }
+    round <- round+1   } }
 
 checkscore(boards[[solution]],numbers)
-
 # Part 2
 solution <- which.max(map_dbl(boards, ~checkbingo(., numbers)))
 checkscore(boards[[solution]], numbers)
